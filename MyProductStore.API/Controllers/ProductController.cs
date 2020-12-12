@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MyProductStore.Application.Commands;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;
 using MyProductStore.Core.Interfaces;
@@ -38,6 +39,13 @@ namespace MyProductStore.API.Controllers
             if (product == null) return NotFound();
 
             return Ok(product);
+        }
+
+        [HttpPost("")]
+        public async Task<ActionResult> CreateProduct([FromBody] PostProductCommand postProductCommand)
+        {
+            var product = await _mediator.Send(postProductCommand);
+            return new CreatedAtRouteResult("GetProductById", new { id = product.Id }, product);
         }
 
 

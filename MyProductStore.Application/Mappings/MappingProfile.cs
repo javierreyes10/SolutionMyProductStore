@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MyProductStore.Application.Commands;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Entities;
 
@@ -11,6 +12,9 @@ namespace MyProductStore.Application.Mappings
             //Domain -> Dto
             CreateMap<Product, ProductOutputDto>();
             CreateMap<ProductOutputDto, Product>();
+
+
+            CreateMap<PostProductCommand, Product>();
         }
     }
 }
