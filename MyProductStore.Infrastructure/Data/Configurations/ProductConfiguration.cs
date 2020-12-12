@@ -46,6 +46,9 @@ namespace MyProductStore.Infrastructure.Data.Configurations
                 .Property(p => p.SKU)
                 .HasMaxLength(20)
                 .IsUnicode(false);
+
+            builder
+               .ToTable("Producto");
         }
     }
 }
