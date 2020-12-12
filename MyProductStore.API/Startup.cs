@@ -1,14 +1,17 @@
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyProductStore.Application.Handlers;
 using MyProductStore.Application.Mappings;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
 using MyProductStore.Infrastructure.Repositories;
+using System.Reflection;
 
 namespace MyProductStore.API
 {
@@ -33,6 +36,8 @@ namespace MyProductStore.API
 
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddMediatR(typeof(GetAllProductsHandler).GetTypeInfo().Assembly);
 
         }
 
