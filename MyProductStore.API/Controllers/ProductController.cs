@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Entities;
 using MyProductStore.Core.Interfaces;
 using System.Collections.Generic;
@@ -11,15 +13,19 @@ namespace MyProductStore.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public ProductController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts()
         {
-            return Ok(await _unitOfWork.Products.GetAllAsync());
+
+            var products = await _unitOfWork.Products.GetAllAsync();
+            return Ok(_mapper.Map<IEnumerable<Product>, IEnumerable<ProductOutputDto>>(products));
         }
     }
 }
