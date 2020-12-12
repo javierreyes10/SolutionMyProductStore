@@ -10,7 +10,7 @@ namespace MyProductStore.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ProductStoreDbContext _context;
-        private IRepository<Product> _productRepository;
+        private readonly IRepository<Product> _productRepository;
 
         public UnitOfWork(ProductStoreDbContext context)
         {
