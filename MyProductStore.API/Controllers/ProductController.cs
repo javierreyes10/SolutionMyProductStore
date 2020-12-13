@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;
-using MyProductStore.Core.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,13 +12,9 @@ namespace MyProductStore.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        public ProductController(IUnitOfWork unitOfWork, IMapper mapper, IMediator mediator)
+        public ProductController(IMediator mediator)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
             _mediator = mediator;
         }
 
