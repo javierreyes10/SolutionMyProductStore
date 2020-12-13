@@ -12,7 +12,9 @@ using MyProductStore.Application.Mappings;
 using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
+using MyProductStore.Infrastructure.Interfaces;
 using MyProductStore.Infrastructure.Repositories;
+using MyProductStore.Infrastructure.Services;
 using System.Reflection;
 
 namespace MyProductStore.API
@@ -36,6 +38,9 @@ namespace MyProductStore.API
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
+
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));
 
@@ -53,6 +58,8 @@ namespace MyProductStore.API
             services
                 .AddControllersWithViews()
                 .AddNewtonsoftJson();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

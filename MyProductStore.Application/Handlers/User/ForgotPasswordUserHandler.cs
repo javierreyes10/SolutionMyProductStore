@@ -12,11 +12,13 @@ namespace MyProductStore.Application.Handlers.User
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService;
 
-        public ForgotPasswordUserHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public ForgotPasswordUserHandler(IUnitOfWork unitOfWork, IMapper mapper, IEmailService emailService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _emailService = emailService;
         }
         public async Task<string> Handle(ForgotPasswordUserCommand request, CancellationToken cancellationToken)
         {
@@ -30,15 +32,27 @@ namespace MyProductStore.Application.Handlers.User
 
             await _unitOfWork.CommitAsync();
 
-            //TODO Send email
+            await SendResetPasswordEmailAsync(user);
 
             return $"An email has been sent to {user.Email}. Please follow the instructions to reset your password";
 
         }
 
-        private string RandomTokenString()
+        private string RandomTokenString() => Guid.NewGuid().ToString().ToUpper();
+
+        private async Task SendResetPasswordEmailAsync(Core.Entities.User user)
         {
-            return Guid.NewGuid().ToString().ToUpper();
+            var message = $@"Hi there,
+                            
+                            <p>To reset your password, please go to <code>/api/users/reset-password</code> endpoint and provide the token below </p>
+                            <p><code>{user.ResetToken}</code></p>";
+
+            await _emailService.SendAsync(
+                to: user.Email,
+                subject: "My Product Store API - Reset Password",
+                html: $@"<h4>Reset Password Email</h4>
+                            {message}"
+                );
         }
     }
 }

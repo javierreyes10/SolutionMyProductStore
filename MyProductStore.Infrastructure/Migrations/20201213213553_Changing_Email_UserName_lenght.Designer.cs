@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyProductStore.Infrastructure.Data;
 
 namespace MyProductStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ProductStoreDbContext))]
-    partial class ProductStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201213213553_Changing_Email_UserName_lenght")]
+    partial class Changing_Email_UserName_lenght
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

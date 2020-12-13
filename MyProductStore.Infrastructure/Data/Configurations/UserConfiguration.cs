@@ -31,7 +31,7 @@ namespace MyProductStore.Infrastructure.Data.Configurations
                 .Property(u => u.UserName)
                 .HasColumnName("Usuario")
                 .IsRequired()
-                .HasMaxLength(20);
+                .HasMaxLength(50);
 
             builder
                 .Property(u => u.BirthdDate)
@@ -42,7 +42,7 @@ namespace MyProductStore.Infrastructure.Data.Configurations
                 .Property(u => u.Email)
                 .HasColumnName("Email")
                 .IsRequired()
-                .HasMaxLength(20);
+                .HasMaxLength(100);
 
             builder
                 .Property(u => u.PasswordHash)
