@@ -29,6 +29,16 @@ namespace MyProductStore.API.Controllers
             return Ok(products.Items);
         }
 
+        [HttpGet("{id}", Name = "GeUserById")]
+        public async Task<ActionResult<UserOutputDto>> GetUserById(int id)
+        {
+            var user = await _mediator.Send(new GetUserByIdQuery(id));
+
+            if (user == null) return NotFound();
+
+            return Ok(user);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserCommand registerUserCommand)
         {
