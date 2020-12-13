@@ -36,5 +36,12 @@ namespace MyProductStore.API.Controllers
             var message = await _mediator.Send(forgotPasswordUserCommand);
             return Ok(new { message });
         }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordUserCommand resetPasswordUserCommand)
+        {
+            var message = await _mediator.Send(resetPasswordUserCommand);
+            return Ok(new { message });
+        }
     }
 }
