@@ -48,6 +48,17 @@ namespace MyProductStore.API.Controllers
             return new CreatedAtRouteResult("GetProductById", new { id = product.Id }, product);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateMovie(int id, [FromBody] PutProductCommand putProductCommand)
+        {
+            putProductCommand.Id = id;
+            var product = await _mediator.Send(putProductCommand);
+
+            if (product == null) return NotFound();
+
+            return Ok(product);
+        }
+
 
     }
 }

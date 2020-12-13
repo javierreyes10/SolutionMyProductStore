@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyProductStore.Application.Handlers;
 using MyProductStore.Application.Mappings;
+using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
 using MyProductStore.Infrastructure.Repositories;
@@ -38,6 +40,14 @@ namespace MyProductStore.API
             services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddMediatR(typeof(GetAllProductsHandler).GetTypeInfo().Assembly);
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ValidationFilter>();
+            }).AddFluentValidation(options =>
+            {
+                options.RegisterValidatorsFromAssemblyContaining<ProductValidator>();
+            });
 
         }
 

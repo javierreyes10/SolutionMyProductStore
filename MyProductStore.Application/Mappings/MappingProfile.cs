@@ -15,6 +15,9 @@ namespace MyProductStore.Application.Mappings
 
 
             CreateMap<PostProductCommand, Product>();
+            CreateMap<PutProductCommand, Product>();
+
+
         }
     }
 }
