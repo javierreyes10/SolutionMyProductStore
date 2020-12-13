@@ -22,5 +22,19 @@ namespace MyProductStore.API.Controllers
             var user = await _mediator.Send(registerUserCommand);
             return Ok(user);
         }
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserCommand authenticateUserCommand)
+        {
+            var user = await _mediator.Send(authenticateUserCommand);
+            return Ok(user);
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordUserCommand forgotPasswordUserCommand)
+        {
+            var message = await _mediator.Send(forgotPasswordUserCommand);
+            return Ok(new { message });
+        }
     }
 }
