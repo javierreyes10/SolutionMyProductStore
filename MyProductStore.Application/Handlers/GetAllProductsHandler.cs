@@ -7,10 +7,11 @@ using MyProductStore.Core.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace MyProductStore.Application.Handlers
 {
-    public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<ProductOutputDto>>
+    public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, PagedListOutputDto<ProductOutputDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -20,11 +21,29 @@ namespace MyProductStore.Application.Handlers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ProductOutputDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedListOutputDto<ProductOutputDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
 
             var products = await _unitOfWork.Products.GetAllProductsAsync(request.CustomQueryParameter);
-            return _mapper.Map<IEnumerable<Product>, IEnumerable<ProductOutputDto>>(products);
+            var productsAsEnumerable = await products.ToListAsync();
+
+            var pageListOutputDto = new PagedListOutputDto<ProductOutputDto>
+            {
+                Items = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductOutputDto>>(productsAsEnumerable),
+                Metadata = new PaginationMetadataOutput
+                {
+                    TotalCount = products.TotalItemCount,
+                    PageSize = products.PageSize,
+                    TotalPages = products.PageCount,
+                    CurrentPage = products.PageNumber,
+                    IsFirstPage = products.IsFirstPage,
+                    IsLastPage = products.IsLastPage,
+                    HasNextPage = products.HasNextPage,
+                    HasPreviousPage = products.HasPreviousPage
+                }
+            };
+
+            return pageListOutputDto;
         }
     }
 }

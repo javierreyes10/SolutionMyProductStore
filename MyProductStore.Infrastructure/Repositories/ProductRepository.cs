@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MyProductStore.Core.Entities;
+﻿using MyProductStore.Core.Entities;
 using MyProductStore.Core.QueryParameter;
 using MyProductStore.Core.Repositories;
 using MyProductStore.Infrastructure.Data;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace MyProductStore.Infrastructure.Repositories
 {
@@ -16,14 +15,14 @@ namespace MyProductStore.Infrastructure.Repositories
         public ProductRepository(ProductStoreDbContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(ProductQueryParameter parameter)
+        public async Task<IPagedList<Product>> GetAllProductsAsync(ProductQueryParameter parameter)
         {
             var products = ProductStoreDbContext.Products.AsQueryable();
 
             SearchByName(ref products, parameter.Name);
             SearchBySku(ref products, parameter.Sku);
 
-            return await products.ToListAsync();
+            return await products.ToPagedListAsync(parameter.PageNumber, parameter.PageSize);
         }
 
         //TODO: GENERIC METHODS?

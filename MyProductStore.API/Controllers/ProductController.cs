@@ -6,6 +6,7 @@ using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;
 using MyProductStore.Core.QueryParameter;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,7 +27,9 @@ namespace MyProductStore.API.Controllers
         public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] ProductQueryParameter parameters)
         {
             var products = await _mediator.Send(new GetAllProductsQuery(parameters));
-            return Ok(products);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
+            return Ok(products.Items);
         }
 
         [HttpGet("{id}", Name = "GetProductById")]
