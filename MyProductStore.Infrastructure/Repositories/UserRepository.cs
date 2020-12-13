@@ -1,4 +1,5 @@
 ﻿using MyProductStore.Core.Entities;
+using MyProductStore.Core.QueryParameter;
 using MyProductStore.Core.Repositories;
 using MyProductStore.Infrastructure.Data;
 using System.Threading.Tasks;
@@ -13,12 +14,11 @@ namespace MyProductStore.Infrastructure.Repositories
         public UserRepository(ProductStoreDbContext context) : base(context)
         {
         }
-        public async Task<IPagedList<User>> GetAllUsersAsync()
+        public async Task<IPagedList<User>> GetAllUsersAsync(UserQueryParameter parameter)
         {
             var users = ProductStoreDbContext.Users.AsQueryable();
 
-            //TODO: Change this for the paremeters
-            return await users.ToPagedListAsync(1, 10);
+            return await users.ToPagedListAsync(parameter.PageNumber, parameter.PageSize);
         }
     }
 }

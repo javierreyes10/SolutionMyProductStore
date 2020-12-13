@@ -27,7 +27,7 @@ namespace MyProductStore.Application.Handlers
             var products = await _unitOfWork.Products.GetAllProductsAsync(request.CustomQueryParameter);
             var productsAsEnumerable = await products.ToListAsync();
 
-            var pageListOutputDto = new PagedListOutputDto<ProductOutputDto>
+            return new PagedListOutputDto<ProductOutputDto>
             {
                 Items = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductOutputDto>>(productsAsEnumerable),
                 Metadata = new PaginationMetadataOutput
@@ -43,7 +43,7 @@ namespace MyProductStore.Application.Handlers
                 }
             };
 
-            return pageListOutputDto;
+
         }
     }
 }

@@ -1,6 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.DTOs.Output.User;
+using MyProductStore.Application.Queries.User;
+using MyProductStore.Core.QueryParameter;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MyProductStore.API.Controllers
@@ -15,6 +20,14 @@ namespace MyProductStore.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("")]
+        public async Task<ActionResult<IEnumerable<UserOutputDto>>> GetAllUsers([FromQuery] UserQueryParameter parameters)
+        {
+            var products = await _mediator.Send(new GetAllUsersQuery(parameters));
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
+            return Ok(products.Items);
+        }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserCommand registerUserCommand)
