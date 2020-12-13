@@ -66,5 +66,15 @@ namespace MyProductStore.API.Controllers
             var message = await _mediator.Send(resetPasswordUserCommand);
             return Ok(new { message });
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            var user = await _mediator.Send(new DeleteUserCommand(id));
+
+            if (user == null) return NotFound();
+
+            return NoContent();
+        }
     }
 }
