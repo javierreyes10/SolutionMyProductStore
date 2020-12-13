@@ -1,10 +1,13 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands;
+using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 
 namespace MyProductStore.API.Controllers
 {
@@ -51,6 +54,18 @@ namespace MyProductStore.API.Controllers
             if (product == null) return NotFound();
 
             return Ok(product);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> PartiallyUpdateProduct(int id,
+            [FromBody] JsonPatchDocument<ProductInputDto> patchDocument)
+        {
+            var product = await _mediator.Send(new PatchProductCommand(id, patchDocument));
+
+            if (product == null) return NotFound();
+
+            return Ok(product);
+
         }
 
         [HttpDelete("{id}")]

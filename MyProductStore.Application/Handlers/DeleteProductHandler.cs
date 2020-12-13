@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using MyProductStore.Application.Commands;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Interfaces;
@@ -11,12 +10,11 @@ namespace MyProductStore.Application.Handlers
     public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, ProductOutputDto>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public DeleteProductHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public DeleteProductHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
+
         }
 
         public async Task<ProductOutputDto> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
