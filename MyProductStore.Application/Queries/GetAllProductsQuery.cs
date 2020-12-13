@@ -7,9 +7,9 @@ namespace MyProductStore.Application.Queries
 {
     public class GetAllProductsQuery : IRequest<IEnumerable<ProductOutputDto>>
     {
-        public CustomQueryParameter CustomQueryParameter { get; set; }
+        public ProductQueryParameter CustomQueryParameter { get; set; }
 
-        public GetAllProductsQuery(CustomQueryParameter customQueryParameter)
+        public GetAllProductsQuery(ProductQueryParameter customQueryParameter)
         {
             CustomQueryParameter = customQueryParameter;
         }

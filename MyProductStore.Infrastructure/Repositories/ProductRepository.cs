@@ -16,7 +16,7 @@ namespace MyProductStore.Infrastructure.Repositories
         public ProductRepository(ProductStoreDbContext context) : base(context)
         {
         }
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(CustomQueryParameter parameter)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(ProductQueryParameter parameter)
         {
             var products = ProductStoreDbContext.Products.AsQueryable();
 

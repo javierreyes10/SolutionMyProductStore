@@ -23,7 +23,7 @@ namespace MyProductStore.API.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] CustomQueryParameter parameters)
+        public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] ProductQueryParameter parameters)
         {
             var products = await _mediator.Send(new GetAllProductsQuery(parameters));
             return Ok(products);

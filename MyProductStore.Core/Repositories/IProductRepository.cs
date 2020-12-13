@@ -7,7 +7,7 @@ namespace MyProductStore.Core.Repositories
 {
     public interface IProductRepository : IRepository<Product>
     {
-        Task<IEnumerable<Product>> GetAllProductsAsync(CustomQueryParameter parameter);
+        Task<IEnumerable<Product>> GetAllProductsAsync(ProductQueryParameter parameter);
     }
 }
 
