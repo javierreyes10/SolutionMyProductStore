@@ -23,7 +23,7 @@ namespace MyProductStore.Application.Handlers
         public async Task<IEnumerable<ProductOutputDto>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
 
-            var products = await _unitOfWork.Products.GetAllAsync();
+            var products = await _unitOfWork.Products.GetAllProductsAsync(request.CustomQueryParameter);
             return _mapper.Map<IEnumerable<Product>, IEnumerable<ProductOutputDto>>(products);
         }
     }

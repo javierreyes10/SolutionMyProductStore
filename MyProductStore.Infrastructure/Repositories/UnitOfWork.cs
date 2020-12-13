@@ -1,5 +1,4 @@
-﻿using MyProductStore.Core.Entities;
-using MyProductStore.Core.Interfaces;
+﻿using MyProductStore.Core.Interfaces;
 using MyProductStore.Core.Repositories;
 using MyProductStore.Infrastructure.Data;
 using System;
@@ -10,14 +9,14 @@ namespace MyProductStore.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ProductStoreDbContext _context;
-        private readonly IRepository<Product> _productRepository;
+        private readonly IProductRepository _productRepository;
 
         public UnitOfWork(ProductStoreDbContext context)
         {
             _context = context;
         }
 
-        public IRepository<Product> Products => _productRepository ?? new Repository<Product>(_context);
+        public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
 
         public async Task<int> CommitAsync()
         {

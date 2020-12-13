@@ -5,6 +5,7 @@ using MyProductStore.Application.Commands;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;
+using MyProductStore.Core.QueryParameter;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,9 +23,9 @@ namespace MyProductStore.API.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] CustomQueryParameter parameters)
         {
-            var products = await _mediator.Send(new GetAllProductsQuery());
+            var products = await _mediator.Send(new GetAllProductsQuery(parameters));
             return Ok(products);
         }
 
