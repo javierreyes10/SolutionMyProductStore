@@ -9,7 +9,9 @@ namespace MyProductStore.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ProductStoreDbContext _context;
+
         private readonly IProductRepository _productRepository;
+        public readonly IUserRepository _userRepository;
 
         public UnitOfWork(ProductStoreDbContext context)
         {
@@ -17,6 +19,7 @@ namespace MyProductStore.Infrastructure.Repositories
         }
 
         public IProductRepository Products => _productRepository ?? new ProductRepository(_context);
+        public IUserRepository Users => _userRepository ?? new UserRepository(_context);
 
         public async Task<int> CommitAsync()
         {
