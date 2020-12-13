@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MyProductStore.Application.Commands;
+using MyProductStore.Application.Commands.User;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
+using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Core.Entities;
 
 namespace MyProductStore.Application.Mappings
@@ -20,6 +22,10 @@ namespace MyProductStore.Application.Mappings
 
             CreateMap<Product, ProductInputDto>();
             CreateMap<ProductInputDto, Product>();
+
+            CreateMap<RegisterUserCommand, User>();
+
+            CreateMap<User, UserOutputDto>();
 
         }
     }
