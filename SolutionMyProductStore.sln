@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D7651199
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web.API", "Web.API", "{05204F78-E801-4A44-8823-05F3C8D23291}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProductStore.API", "MyProductStore.API\MyProductStore.API.csproj", "{90259F70-12ED-41AC-822E-43A00CE11F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProductStore.API", "MyProductStore.API\MyProductStore.API.csproj", "{90259F70-12ED-41AC-822E-43A00CE11F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProductStore.Core", "MyProductStore.Core\MyProductStore.Core.csproj", "{CD37A5CF-D15E-41EF-9D86-DDD2A55C581C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProductStore.Core", "MyProductStore.Core\MyProductStore.Core.csproj", "{CD37A5CF-D15E-41EF-9D86-DDD2A55C581C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProductStore.Application", "MyProductStore.Application\MyProductStore.Application.csproj", "{5C0FB82B-783A-425A-A7F2-61A65CF1983D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProductStore.Application", "MyProductStore.Application\MyProductStore.Application.csproj", "{5C0FB82B-783A-425A-A7F2-61A65CF1983D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProductStore.Infrastructure", "MyProductStore.Infrastructure\MyProductStore.Infrastructure.csproj", "{6BA7CB4D-78AE-4EF2-8696-BFFEDDAF95B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProductStore.Infrastructure", "MyProductStore.Infrastructure\MyProductStore.Infrastructure.csproj", "{6BA7CB4D-78AE-4EF2-8696-BFFEDDAF95B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

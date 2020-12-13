@@ -3,8 +3,10 @@ using MyProductStore.Application.DTOs.Output;
 
 namespace MyProductStore.Application.Commands
 {
-    public class PostProductCommand : IRequest<ProductOutputDto>
+    //TODO this class should be refactor. Id must no be passed for POST
+    public class ProductCommand : IRequest<ProductOutputDto>
     {
+        public int Id { get; set; }
         public string SKU { get; set; }
         public string Name { get; set; }
         public short Quantity { get; set; }

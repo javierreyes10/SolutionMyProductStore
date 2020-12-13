@@ -3,7 +3,7 @@ using MyProductStore.Application.Commands;
 
 namespace MyProductStore.Application.Validators
 {
-    public class ProductValidator : AbstractValidator<PostProductCommand>
+    public class ProductValidator : AbstractValidator<ProductCommand>
     {
         public ProductValidator()
         {
@@ -41,6 +41,10 @@ namespace MyProductStore.Application.Validators
             RuleFor(p => p.SKU)
                 .MaximumLength(20)
                 .WithMessage("Product SKU cannot be greater than 20 characteres");
+
+            RuleFor(p => p.Id)
+                .Null()
+                .WithMessage("Product Id cannot be define");
         }
     }
 }

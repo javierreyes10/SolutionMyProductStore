@@ -42,14 +42,14 @@ namespace MyProductStore.API.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> CreateProduct([FromBody] PostProductCommand postProductCommand)
+        public async Task<ActionResult> CreateProduct([FromBody] ProductCommand postProductCommand)
         {
             var product = await _mediator.Send(postProductCommand);
             return new CreatedAtRouteResult("GetProductById", new { id = product.Id }, product);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateMovie(int id, [FromBody] PutProductCommand putProductCommand)
+        public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductCommand putProductCommand)
         {
             putProductCommand.Id = id;
             var product = await _mediator.Send(putProductCommand);
@@ -59,6 +59,14 @@ namespace MyProductStore.API.Controllers
             return Ok(product);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var product = await _mediator.Send(new DeleteProductCommand(id));
 
+            if (product == null) return NotFound();
+
+            return NoContent();
+        }
     }
 }
