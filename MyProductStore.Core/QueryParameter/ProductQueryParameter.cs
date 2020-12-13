@@ -1,6 +1,6 @@
 ﻿namespace MyProductStore.Core.QueryParameter
 {
-    public class ProductQueryParameter
+    public class ProductQueryParameter : QueryStringParameters
     {
         public string Name { get; set; }
 
