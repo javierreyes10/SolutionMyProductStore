@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyProductStore.Infrastructure.Data;
 
 namespace MyProductStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ProductStoreDbContext))]
-    partial class ProductStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201213172856_Created User Table")]
+    partial class CreatedUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
