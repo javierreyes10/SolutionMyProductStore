@@ -11,7 +11,7 @@ namespace MyProductStore.Infrastructure.Repositories
         private readonly ProductStoreDbContext _context;
 
         private readonly IProductRepository _productRepository;
-        public readonly IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
         public UnitOfWork(ProductStoreDbContext context)
         {
