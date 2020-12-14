@@ -44,9 +44,9 @@ namespace MyProductStore.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterUserCommand registerUserCommand)
+        public async Task<IActionResult> Register([FromBody] UserInputDto userInputDto)
         {
-            var user = await _mediator.Send(registerUserCommand);
+            var user = await _mediator.Send(new RegisterUserCommand(userInputDto));
             return Ok(user);
         }
 
@@ -73,7 +73,7 @@ namespace MyProductStore.API.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateUser(int id, [FromBody] PutUserInputDto putUserInputDto)
+        public async Task<ActionResult> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
         {
             var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto, UserId.Value));
 

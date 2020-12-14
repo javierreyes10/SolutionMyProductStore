@@ -22,7 +22,7 @@ namespace MyProductStore.Application.Mappings
 
             CreateMap<User, UserOutputDto>();
 
-            CreateMap<PutUserInputDto, User>();
+            CreateMap<UserInputDto, User>();
 
         }
     }

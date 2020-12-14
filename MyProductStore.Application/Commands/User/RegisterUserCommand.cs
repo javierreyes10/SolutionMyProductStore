@@ -1,16 +1,11 @@
-﻿using MediatR;
-using MyProductStore.Application.DTOs.Output.User;
-using System;
+﻿using MyProductStore.Application.DTOs.Input;
 
 namespace MyProductStore.Application.Commands.User
 {
-    public class RegisterUserCommand : IRequest<UserOutputDto>
+    public class RegisterUserCommand : BaseUserCommand
     {
-        public string Name { get; set; }
-        public string Phone { get; set; }
-        public string UserName { get; set; }
-        public DateTime BirthdDate { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public RegisterUserCommand(UserInputDto userInputDto) : base(userInputDto)
+        {
+        }
     }
 }

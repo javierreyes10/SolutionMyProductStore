@@ -4,7 +4,7 @@ using System;
 
 namespace MyProductStore.Application.Validators
 {
-    public class UserValidator : AbstractValidator<PutUserInputDto>
+    public class UserValidator : AbstractValidator<UserInputDto>
     {
         public UserValidator()
         {
