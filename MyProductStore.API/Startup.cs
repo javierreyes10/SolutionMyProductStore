@@ -59,6 +59,29 @@ namespace MyProductStore.API
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 doc.IncludeXmlComments(xmlPath);
+
+                doc.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT authorization header using the Bearer scheme."
+                });
+
+                doc.OperationFilter<AuthResponsesOperationFilter>();
+
+                //doc.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                //    {
+                //        new OpenApiSecurityScheme{
+                //            Reference = new OpenApiReference{
+                //                Type = ReferenceType.SecurityScheme,
+                //                Id = "Bearer"
+                //              }
+                //            }, new String[]{ }
+                //     }
+                //});
             });
 
             services.AddMvc(options =>

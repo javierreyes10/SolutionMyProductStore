@@ -22,7 +22,8 @@ namespace MyProductStore.Application.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            var token = context.Request.Headers["x-authorization-token"].FirstOrDefault();
+
+            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(' ').Last();
 
             if (token != null)
                 await AttachUserToContext(context, token);
