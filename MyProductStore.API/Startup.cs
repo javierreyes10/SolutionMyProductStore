@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using MyProductStore.Application.Handlers;
 using MyProductStore.Application.JwtToken;
 using MyProductStore.Application.Mappings;
@@ -50,6 +51,11 @@ namespace MyProductStore.API
 
             services.AddMediatR(typeof(GetAllProductsHandler).GetTypeInfo().Assembly);
 
+            services.AddSwaggerGen(doc =>
+            {
+                doc.SwaggerDoc("v1", new OpenApiInfo { Title = "My Product Store API Elaniin", Version = "v1" });
+            });
+
             services.AddMvc(options =>
             {
                 options.Filters.Add<ValidationFilter>();
@@ -75,6 +81,13 @@ namespace MyProductStore.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My Producto Store API Elaniin");
+            });
 
             app.UseRouting();
 
