@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Exceptions;
 using MyProductStore.Core.Interfaces;
 using System;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace MyProductStore.Application.Handlers.User
             var user = await _unitOfWork.Users.SingleOrDefaultAsync(u =>
             u.ResetToken == request.Token.Trim().ToUpper() && u.ResetTokenExpires > DateTime.UtcNow);
 
-            if (user == null) throw new Exception("Invalid Token");
+            if (user == null) throw new ApiBusinessException("Invalid Token");
 
             user.PasswordHash = BC.HashPassword(request.Password);
             user.ResetToken = null;

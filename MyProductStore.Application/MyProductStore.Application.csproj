@@ -20,8 +20,4 @@
     <ProjectReference Include="..\MyProductStore.Core\MyProductStore.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Exceptions\" />
-  </ItemGroup>
-
 </Project>

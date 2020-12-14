@@ -28,8 +28,7 @@ namespace MyProductStore.Application.Handlers
             await _unitOfWork.Products.AddAsync(product);
             var result = await _unitOfWork.CommitAsync();
 
-            //TODO: Create my own exceptions
-            if (result <= 0) throw new Exception("The product cannot be created");
+            if (result <= 0) throw new Exception("The product could not be created. Please try again");
 
             return _mapper.Map<Product, ProductOutputDto>(product);
 

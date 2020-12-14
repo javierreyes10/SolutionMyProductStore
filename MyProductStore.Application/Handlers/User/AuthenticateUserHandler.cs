@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using MyProductStore.Application.Commands.User;
 using MyProductStore.Application.DTOs.Output.User;
+using MyProductStore.Application.Exceptions;
 using MyProductStore.Application.JwtToken;
 using MyProductStore.Core.Interfaces;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using BC = BCrypt.Net.BCrypt;
@@ -24,9 +24,8 @@ namespace MyProductStore.Application.Handlers.User
         {
             var user = await _unitOfWork.Users.SingleOrDefaultAsync(u => u.UserName == request.UserName);
 
-            //TODO: Custom Exception
             if (user == null || !BC.Verify(request.Password, user.PasswordHash))
-                throw new Exception("Email or password is incorrect");
+                throw new ApiBusinessException("Email or password is incorrect");
 
             return new UserTokenOutputDto
             {

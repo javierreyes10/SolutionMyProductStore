@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Exceptions;
 using MyProductStore.Core.Interfaces;
 using System;
 using System.Threading;
@@ -24,8 +25,7 @@ namespace MyProductStore.Application.Handlers.User
         {
             var user = await _unitOfWork.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
 
-            //TODO custom exceptions
-            if (user == null) throw new Exception("The email doesn't exist");
+            if (user == null) throw new ApiBusinessException("The email doesn't exist");
 
             user.ResetToken = RandomTokenString();
             user.ResetTokenExpires = DateTime.UtcNow.AddMinutes(15);
