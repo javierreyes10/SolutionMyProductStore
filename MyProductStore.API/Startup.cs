@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyProductStore.Application.Handlers;
+using MyProductStore.Application.JwtToken;
 using MyProductStore.Application.Mappings;
 using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
@@ -40,6 +41,7 @@ namespace MyProductStore.API
 
             services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
             services.AddTransient<IEmailService, EmailService>();
+            services.AddSingleton<IJwtTokenBuilder, JwtTokenBuilder>();
 
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));

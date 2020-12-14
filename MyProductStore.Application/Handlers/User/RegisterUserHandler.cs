@@ -2,6 +2,7 @@
 using MediatR;
 using MyProductStore.Application.Commands.User;
 using MyProductStore.Application.DTOs.Output.User;
+using MyProductStore.Application.JwtToken;
 using MyProductStore.Core.Interfaces;
 using System;
 using System.Threading;
@@ -15,11 +16,13 @@ namespace MyProductStore.Application.Handlers.User
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IJwtTokenBuilder _jwtTokenBuilder;
 
-        public RegisterUserHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public RegisterUserHandler(IUnitOfWork unitOfWork, IMapper mapper, IJwtTokenBuilder jwtTokenBuilder)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _jwtTokenBuilder = jwtTokenBuilder;
         }
         public async Task<UserOutputDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
@@ -36,7 +39,10 @@ namespace MyProductStore.Application.Handlers.User
             //TODO: Create my own exceptions
             if (result <= 0) throw new Exception("The User cannot be created");
 
-            return _mapper.Map<Core.Entities.User, UserOutputDto>(user);
+            var userOutputDto = _mapper.Map<Core.Entities.User, UserOutputDto>(user);
+            userOutputDto.Token = _jwtTokenBuilder.BuildToken(user);
+
+            return userOutputDto;
         }
     }
 }

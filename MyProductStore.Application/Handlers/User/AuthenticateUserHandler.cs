@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using MyProductStore.Application.Commands.User;
 using MyProductStore.Application.DTOs.Output.User;
+using MyProductStore.Application.JwtToken;
 using MyProductStore.Core.Interfaces;
 using System;
 using System.Threading;
@@ -13,12 +13,12 @@ namespace MyProductStore.Application.Handlers.User
     public class AuthenticateUserHandler : IRequestHandler<AuthenticateUserCommand, UserTokenOutputDto>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IJwtTokenBuilder _jwtTokenBuilder;
 
-        public AuthenticateUserHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public AuthenticateUserHandler(IUnitOfWork unitOfWork, IJwtTokenBuilder jwtTokenBuilder)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _jwtTokenBuilder = jwtTokenBuilder;
         }
         public async Task<UserTokenOutputDto> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
@@ -31,7 +31,7 @@ namespace MyProductStore.Application.Handlers.User
             return new UserTokenOutputDto
             {
                 UserName = request.UserName,
-                Token = Guid.NewGuid().ToString() //TODO: JWT Token
+                Token = _jwtTokenBuilder.BuildToken(user)
             };
         }
     }
