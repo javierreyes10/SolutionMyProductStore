@@ -15,6 +15,7 @@ using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
 using MyProductStore.Infrastructure.Interfaces;
+using MyProductStore.Infrastructure.Middlewares;
 using MyProductStore.Infrastructure.Repositories;
 using MyProductStore.Infrastructure.Services;
 using System.Reflection;
@@ -78,6 +79,8 @@ namespace MyProductStore.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseMiddleware<JwtMiddleware>();
 
