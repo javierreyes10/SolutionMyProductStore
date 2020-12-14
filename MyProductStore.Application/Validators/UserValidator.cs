@@ -20,7 +20,7 @@ namespace MyProductStore.Application.Validators
 
             RuleFor(p => p.Phone)
                 .Matches("^\\d{8}$")
-                .WithMessage("User Phone can contain numbers only");
+                .WithMessage("User Phone can contain numbers only with 8 digits");
 
             RuleFor(p => p.Phone)
               .NotNull()
