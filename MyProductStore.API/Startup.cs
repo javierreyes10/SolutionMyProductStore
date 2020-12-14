@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using MyProductStore.Application.Handlers;
 using MyProductStore.Application.JwtToken;
 using MyProductStore.Application.Mappings;
+using MyProductStore.Application.Middleware;
 using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
@@ -77,6 +78,8 @@ namespace MyProductStore.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands.User;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
+using MyProductStore.Application.Filters;
 using MyProductStore.Application.Queries.User;
 using MyProductStore.Core.QueryParameter;
 using Newtonsoft.Json;
@@ -21,6 +22,7 @@ namespace MyProductStore.API.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<UserOutputDto>>> GetAllUsers([FromQuery] UserQueryParameter parameters)
         {
@@ -30,6 +32,7 @@ namespace MyProductStore.API.Controllers
             return Ok(products.Items);
         }
 
+        [Authorize]
         [HttpGet("{id}", Name = "GeUserById")]
         public async Task<ActionResult<UserOutputDto>> GetUserById(int id)
         {
@@ -68,6 +71,7 @@ namespace MyProductStore.API.Controllers
             return Ok(new { message });
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateUser(int id, [FromBody] PutUserInputDto putUserInputDto)
         {
@@ -78,6 +82,7 @@ namespace MyProductStore.API.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {

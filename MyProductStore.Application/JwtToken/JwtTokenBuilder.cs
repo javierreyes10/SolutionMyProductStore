@@ -24,7 +24,7 @@ namespace MyProductStore.Application.JwtToken
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.Id.ToString()),
+                new Claim("Id", user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
