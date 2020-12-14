@@ -25,7 +25,7 @@ namespace MyProductStore.Application.Handlers.User
             if (request.Id != request.UserIdFromToken) throw new ApiBusinessException("Not Allowed to update a different user");
 
             var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
-            var userRequest = request.PutUserInputDto;
+            var userRequest = request.User;
 
             if (user == null) return null;
 
@@ -38,7 +38,7 @@ namespace MyProductStore.Application.Handlers.User
                 throw new ApiBusinessException("There is already an account with this username");
 
 
-            _mapper.Map(request.PutUserInputDto, user);
+            _mapper.Map(request.User, user);
 
             await _unitOfWork.CommitAsync();
 
