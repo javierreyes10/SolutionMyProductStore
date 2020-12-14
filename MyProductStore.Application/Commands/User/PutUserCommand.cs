@@ -9,10 +9,13 @@ namespace MyProductStore.Application.Commands.User
         public int Id { get; set; }
         public PutUserInputDto PutUserInputDto { get; set; }
 
-        public PutUserCommand(int id, PutUserInputDto putUserInputDto)
+        public int UserIdFromToken { get; set; }
+
+        public PutUserCommand(int id, PutUserInputDto putUserInputDto, int userIdFromToken)
         {
             Id = id;
             PutUserInputDto = putUserInputDto;
+            UserIdFromToken = userIdFromToken;
         }
     }
 }

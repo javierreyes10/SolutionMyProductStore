@@ -14,7 +14,7 @@ namespace MyProductStore.API.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseUserControllerController
     {
         private readonly IMediator _mediator;
         public UserController(IMediator mediator)
@@ -75,7 +75,7 @@ namespace MyProductStore.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateUser(int id, [FromBody] PutUserInputDto putUserInputDto)
         {
-            var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto));
+            var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto, UserId.Value));
 
             if (user == null) return NotFound();
 
@@ -86,7 +86,7 @@ namespace MyProductStore.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            var user = await _mediator.Send(new DeleteUserCommand(id));
+            var user = await _mediator.Send(new DeleteUserCommand(id, UserId.Value));
 
             if (user == null) return NotFound();
 

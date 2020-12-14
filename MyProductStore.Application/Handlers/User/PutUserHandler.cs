@@ -22,6 +22,8 @@ namespace MyProductStore.Application.Handlers.User
 
         public async Task<UserOutputDto> Handle(PutUserCommand request, CancellationToken cancellationToken)
         {
+            if (request.Id != request.UserIdFromToken) throw new Exception("Not Allowed to update a different user");
+
             var user = await _unitOfWork.Users.GetByIdAsync(request.Id);
             var userRequest = request.PutUserInputDto;
 

@@ -49,6 +49,8 @@ namespace MyProductStore.Application.Middleware
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "Id").Value);
 
+                //TODO: Validate this when the user doesnt exist anymore
+
                 context.Items["UserId"] = userId;
             }
             catch
