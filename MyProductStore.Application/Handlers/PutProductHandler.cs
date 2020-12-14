@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyProductStore.Application.Handlers
 {
-    public class PutProductHandler : IRequestHandler<ProductCommand, ProductOutputDto>
+    public class PutProductHandler : IRequestHandler<PutProductCommand, ProductOutputDto>
     {
 
         private readonly IUnitOfWork _unitOfWork;
@@ -20,13 +20,13 @@ namespace MyProductStore.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<ProductOutputDto> Handle(ProductCommand request, CancellationToken cancellationToken)
+        public async Task<ProductOutputDto> Handle(PutProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.Products.GetByIdAsync(request.Id);
 
             if (product == null) return null;
 
-            _mapper.Map(request, product);
+            _mapper.Map(request.Product, product);
 
             await _unitOfWork.CommitAsync();
 

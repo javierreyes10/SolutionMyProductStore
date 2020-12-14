@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.Commands;
+using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Entities;
 using MyProductStore.Core.Interfaces;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyProductStore.Application.Handlers
 {
-    public class PostProductHandler : IRequestHandler<ProductCommand, ProductOutputDto>
+    public class PostProductHandler : IRequestHandler<CreateProductCommand, ProductOutputDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -21,9 +22,9 @@ namespace MyProductStore.Application.Handlers
             _mapper = mapper;
         }
 
-        public async Task<ProductOutputDto> Handle(ProductCommand request, CancellationToken cancellationToken)
+        public async Task<ProductOutputDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<ProductCommand, Product>(request);
+            var product = _mapper.Map<ProductInputDto, Product>(request.Product);
 
             await _unitOfWork.Products.AddAsync(product);
             var result = await _unitOfWork.CommitAsync();

@@ -43,17 +43,16 @@ namespace MyProductStore.API.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> CreateProduct([FromBody] ProductCommand postProductCommand)
+        public async Task<ActionResult> CreateProduct([FromBody] ProductInputDto productInputDto)
         {
-            var product = await _mediator.Send(postProductCommand);
+            var product = await _mediator.Send(new CreateProductCommand(productInputDto));
             return new CreatedAtRouteResult("GetProductById", new { id = product.Id }, product);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductCommand putProductCommand)
+        public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductInputDto productInputDto)
         {
-            putProductCommand.Id = id;
-            var product = await _mediator.Send(putProductCommand);
+            var product = await _mediator.Send(new PutProductCommand(id, productInputDto));
 
             if (product == null) return NotFound();
 

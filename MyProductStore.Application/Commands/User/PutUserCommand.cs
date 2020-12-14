@@ -8,7 +8,6 @@ namespace MyProductStore.Application.Commands.User
     {
         public int Id { get; set; }
         public PutUserInputDto PutUserInputDto { get; set; }
-
         public int UserIdFromToken { get; set; }
 
         public PutUserCommand(int id, PutUserInputDto putUserInputDto, int userIdFromToken)

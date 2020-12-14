@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using MyProductStore.Application.Commands;
+using MyProductStore.Application.DTOs.Input;
 
 namespace MyProductStore.Application.Validators
 {
-    public class ProductValidator : AbstractValidator<ProductCommand>
+    public class ProductValidator : AbstractValidator<ProductInputDto>
     {
         public ProductValidator()
         {
