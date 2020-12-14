@@ -53,8 +53,9 @@ namespace MyProductStore.Application.Middleware
 
                 context.Items["UserId"] = userId;
             }
-            catch
+            catch (Exception e)
             {
+                Exception test = e;
             }
 
             return Task.CompletedTask;

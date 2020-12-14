@@ -14,7 +14,6 @@ namespace MyProductStore.Application.Validators
 
             RuleFor(p => p.Name)
                 .MaximumLength(100)
-                .NotEmpty()
                 .WithMessage("Product Name cannot be greater than 100");
 
             RuleFor(p => p.Quantity)
