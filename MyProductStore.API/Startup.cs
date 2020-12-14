@@ -19,6 +19,8 @@ using MyProductStore.Infrastructure.Interfaces;
 using MyProductStore.Infrastructure.Middlewares;
 using MyProductStore.Infrastructure.Repositories;
 using MyProductStore.Infrastructure.Services;
+using System;
+using System.IO;
 using System.Reflection;
 
 namespace MyProductStore.API
@@ -54,6 +56,9 @@ namespace MyProductStore.API
             services.AddSwaggerGen(doc =>
             {
                 doc.SwaggerDoc("v1", new OpenApiInfo { Title = "My Product Store API Elaniin", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                doc.IncludeXmlComments(xmlPath);
             });
 
             services.AddMvc(options =>
@@ -87,6 +92,7 @@ namespace MyProductStore.API
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "My Producto Store API Elaniin");
+                options.RoutePrefix = string.Empty;
             });
 
             app.UseRouting();

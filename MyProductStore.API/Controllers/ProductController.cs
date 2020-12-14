@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace MyProductStore.API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -23,6 +24,11 @@ namespace MyProductStore.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Retrieve a list of all the products created. A "X-Pagination" Response Header is added for more details about pagination
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] ProductQueryParameter parameters)
         {
@@ -32,6 +38,11 @@ namespace MyProductStore.API.Controllers
             return Ok(products.Items);
         }
 
+        /// <summary>
+        /// Retrieve a single product by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}", Name = "GetProductById")]
         public async Task<ActionResult<ProductOutputDto>> GetProductById(int id)
         {
@@ -42,6 +53,11 @@ namespace MyProductStore.API.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Create a new product
+        /// </summary>
+        /// <param name="productInputDto"></param>
+        /// <returns></returns>
         [HttpPost("")]
         public async Task<ActionResult> CreateProduct([FromBody] ProductInputDto productInputDto)
         {
@@ -49,6 +65,13 @@ namespace MyProductStore.API.Controllers
             return new CreatedAtRouteResult("GetProductById", new { id = product.Id }, product);
         }
 
+
+        /// <summary>
+        /// Update an existing product by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productInputDto"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductInputDto productInputDto)
         {
@@ -59,6 +82,12 @@ namespace MyProductStore.API.Controllers
             return Ok(product);
         }
 
+        /// <summary>
+        /// Use this endpoint for updating a specific product field
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="patchDocument"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
         public async Task<ActionResult> PartiallyUpdateProduct(int id,
             [FromBody] JsonPatchDocument<ProductInputDto> patchDocument)
@@ -71,6 +100,11 @@ namespace MyProductStore.API.Controllers
 
         }
 
+        /// <summary>
+        /// Delete an existing product by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {

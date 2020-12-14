@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace MyProductStore.API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/users")]
     [ApiController]
     public class UserController : BaseUserControllerController
@@ -22,6 +23,11 @@ namespace MyProductStore.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Retrieve a list of all the users registered. A "X-Pagination" Response Header is added for more details about pagination
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<UserOutputDto>>> GetAllUsers([FromQuery] UserQueryParameter parameters)
@@ -32,6 +38,11 @@ namespace MyProductStore.API.Controllers
             return Ok(products.Items);
         }
 
+        /// <summary>
+        /// Retrieve a specific user by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("{id}", Name = "GeUserById")]
         public async Task<ActionResult<UserOutputDto>> GetUserById(int id)
@@ -43,6 +54,11 @@ namespace MyProductStore.API.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Register a new user. A JWT token will be provided
+        /// </summary>
+        /// <param name="userInputDto"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserInputDto userInputDto)
         {
@@ -50,6 +66,11 @@ namespace MyProductStore.API.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// User authentication. A JWT token will be provided 
+        /// </summary>
+        /// <param name="authenticateUserCommand"></param>
+        /// <returns></returns>
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserCommand authenticateUserCommand)
         {
@@ -57,6 +78,11 @@ namespace MyProductStore.API.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Use this endpoint for request a password reset. You will receive an email with a reset token.
+        /// </summary>
+        /// <param name="forgotPasswordUserCommand"></param>
+        /// <returns></returns>
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordUserCommand forgotPasswordUserCommand)
         {
@@ -64,6 +90,12 @@ namespace MyProductStore.API.Controllers
             return Ok(new { message });
         }
 
+        /// <summary>
+        /// You must provide the token sent by the "forgot-password" endpoint for resetting your password.
+        /// Token available for 15 minutes only
+        /// </summary>
+        /// <param name="resetPasswordUserCommand"></param>
+        /// <returns></returns>
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordUserCommand resetPasswordUserCommand)
         {
@@ -71,6 +103,12 @@ namespace MyProductStore.API.Controllers
             return Ok(new { message });
         }
 
+        /// <summary>
+        /// Update a user by Id. An specific user can update his/her own information only
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="putUserInputDto"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
@@ -82,6 +120,11 @@ namespace MyProductStore.API.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Delete a user by Id. An specific user can delete his/her own account only
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
