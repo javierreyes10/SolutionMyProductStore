@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Application.Queries.User;
 using MyProductStore.Core.QueryParameter;
@@ -65,6 +66,16 @@ namespace MyProductStore.API.Controllers
         {
             var message = await _mediator.Send(resetPasswordUserCommand);
             return Ok(new { message });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateUser(int id, [FromBody] PutUserInputDto putUserInputDto)
+        {
+            var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto));
+
+            if (user == null) return NotFound();
+
+            return Ok(user);
         }
 
         [HttpDelete("{id}")]
