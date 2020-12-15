@@ -63,7 +63,7 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// Register a new user. A JWT token will be provided and will expire after one hour.
+        /// Register a new user. A JWT token will be provided and will expire after one hour. An existing email should be provided.
         /// </summary>
         /// <param name="userInputDto"></param>
         /// <returns></returns>
@@ -124,7 +124,7 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// Update a user by Id. An specific user can update his/her own information only
+        /// Update a user by Id. An specific user can update his/her own information only. An existing email should be provided.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="putUserInputDto"></param>
