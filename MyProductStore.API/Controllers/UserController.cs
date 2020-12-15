@@ -71,7 +71,7 @@ namespace MyProductStore.API.Controllers
         /// <response code="400">Bad Request. The User name or email already exists</response>
         /// <response code="500">Internal Server Error</response>
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserInputDto userInputDto)
+        public async Task<ActionResult<UserOutputDto>> Register([FromBody] UserInputDto userInputDto)
         {
             var user = await _mediator.Send(new RegisterUserCommand(userInputDto));
             return Ok(user);
@@ -85,7 +85,7 @@ namespace MyProductStore.API.Controllers
         /// <response code="400">Bad Request. The Email or password is incorrect</response>
         /// <response code="500">Internal Server Error</response>
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserCommand authenticateUserCommand)
+        public async Task<ActionResult<UserTokenOutputDto>> Authenticate([FromBody] AuthenticateUserCommand authenticateUserCommand)
         {
             var user = await _mediator.Send(authenticateUserCommand);
             return Ok(user);
@@ -134,7 +134,7 @@ namespace MyProductStore.API.Controllers
         /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
+        public async Task<ActionResult<UserOutputDto>> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
         {
             var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto, UserId.Value));
 
@@ -156,7 +156,7 @@ namespace MyProductStore.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
-            var user = await _mediator.Send(new DeleteUserCommand(id, UserId.Value));
+            var user = await _mediator.Send(new DeleteUserCommand(id, UserId ?? 0));
 
             if (user == null) return NotFound();
 
