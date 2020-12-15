@@ -8,7 +8,6 @@ namespace MyProductStore.Application.DTOs.Output.User
         public string Name { get; set; }
         public string Phone { get; set; }
         public DateTime BirthdDate { get; set; }
-        public string Email { get; set; }
 
     }
 }
