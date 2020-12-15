@@ -13,7 +13,6 @@ namespace MyProductStore.Infrastructure.Data
             : base(options)
         {
         }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

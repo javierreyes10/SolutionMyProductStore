@@ -17,6 +17,7 @@ namespace MyProductStore.Infrastructure.Services
             _emailConfiguration = emailConfiguration;
         }
 
+
         public async Task SendAsync(string subject, string html, string to, string from = null)
         {
             var message = new MimeMessage();

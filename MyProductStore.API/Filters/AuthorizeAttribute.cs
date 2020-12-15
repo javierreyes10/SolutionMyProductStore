@@ -11,6 +11,7 @@ namespace MyProductStore.API.Filters
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             int? userId = (int?)context.HttpContext.Items["UserId"];
+
             if (!userId.HasValue)
             {
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };

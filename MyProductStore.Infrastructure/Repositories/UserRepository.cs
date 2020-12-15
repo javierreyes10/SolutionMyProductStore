@@ -14,6 +14,7 @@ namespace MyProductStore.Infrastructure.Repositories
         public UserRepository(ProductStoreDbContext context) : base(context)
         {
         }
+
         public async Task<IPagedList<User>> GetAllUsersAsync(UserQueryParameter parameter)
         {
             var users = ProductStoreDbContext.Users.AsQueryable();

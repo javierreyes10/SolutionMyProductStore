@@ -44,8 +44,6 @@ namespace MyProductStore.Infrastructure.Middlewares
                 var result = JsonConvert.SerializeObject(new { message = message });
                 await response.WriteAsync(result);
             }
-
-
         }
     }
 }

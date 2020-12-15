@@ -13,6 +13,7 @@ namespace MyProductStore.Infrastructure.Services
     public class JwtTokenBuilder : IJwtTokenBuilder
     {
         private readonly IConfiguration _config;
+
         public JwtTokenBuilder(IConfiguration config)
         {
             _config = config;

@@ -36,8 +36,6 @@ namespace MyProductStore.API
             services.AddDbConfiguration(Configuration);
 
             services.AddMyProductStoreServices(Configuration);
-
-            //Automapper
             services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddMediatR(typeof(GetAllProductsHandler).GetTypeInfo().Assembly);
@@ -70,7 +68,7 @@ namespace MyProductStore.API
 
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My Producto Store API Elaniin");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "My Product Store API Elaniin");
                 options.RoutePrefix = string.Empty;
             });
 
