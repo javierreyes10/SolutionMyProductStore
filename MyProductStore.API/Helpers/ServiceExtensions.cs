@@ -20,11 +20,20 @@ namespace MyProductStore.API.Helpers
         {
             services.AddSwaggerGen(doc =>
             {
+                var description = $@"Tecnologies and patterns applied:
+                - Net Core 3.1
+                - EF Core and FluentAPI
+                - FluentValidation
+                - MailKit
+                - Clean Architecture
+                - Unit of Work and Repository Pattern
+                - Mediator and CQRS pattern
+                - and more ...";
                 doc.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "My Product Store API Elaniin",
                     Version = "v1",
-                    Description = "My Product Store Web Api with Net Core 3.1 and other stuffs :)",
+                    Description = description,
                     Contact = new OpenApiContact { Name = "Javier Reyes", Url = new Uri("https://www.linkedin.com/in/javier-reyes-06299678/") }
                 });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -38,7 +47,7 @@ namespace MyProductStore.API.Helpers
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "JWT authorization header using the Bearer scheme."
+                    Description = "JWT authorization header using the Bearer scheme. Token will expire after one hour. For getting a token please register a new user or authenticate an existing one"
                 });
 
                 doc.OperationFilter<AuthResponsesOperationFilter>();
