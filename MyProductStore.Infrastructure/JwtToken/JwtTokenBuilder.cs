@@ -1,13 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MyProductStore.Core.Entities;
+using MyProductStore.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MyProductStore.Application.JwtToken
+namespace MyProductStore.Infrastructure.JwtToken
 {
     public class JwtTokenBuilder : IJwtTokenBuilder
     {

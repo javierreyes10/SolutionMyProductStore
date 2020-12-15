@@ -1,6 +1,6 @@
 ﻿using MyProductStore.Core.Entities;
 
-namespace MyProductStore.Application.JwtToken
+namespace MyProductStore.Core.Interfaces
 {
     public interface IJwtTokenBuilder
     {

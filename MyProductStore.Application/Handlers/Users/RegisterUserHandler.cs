@@ -4,7 +4,6 @@ using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Application.Exceptions;
-using MyProductStore.Application.JwtToken;
 using MyProductStore.Core.Interfaces;
 using System;
 using System.Threading;
