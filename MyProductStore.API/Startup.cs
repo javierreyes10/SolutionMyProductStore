@@ -42,6 +42,8 @@ namespace MyProductStore.API
             services.AddDbContext<ProductStoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"),
                 x => x.MigrationsAssembly("MyProductStore.Infrastructure")), ServiceLifetime.Transient);
 
+            services.BuildServiceProvider().GetService<ProductStoreDbContext>().Database.Migrate();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
