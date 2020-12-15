@@ -2,7 +2,7 @@
 using MyProductStore.Application.DTOs.Input;
 using System;
 
-namespace MyProductStore.Application.Validators
+namespace MyProductStore.Infrastructure.Validators
 {
     public class UserValidator : AbstractValidator<UserInputDto>
     {

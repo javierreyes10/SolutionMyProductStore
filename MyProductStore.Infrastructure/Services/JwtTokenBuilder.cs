@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MyProductStore.Infrastructure.JwtToken
+namespace MyProductStore.Infrastructure.Services
 {
     public class JwtTokenBuilder : IJwtTokenBuilder
     {

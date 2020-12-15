@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Validators
+namespace MyProductStore.Infrastructure.Validators
 {
     public class ValidationFilter : IAsyncActionFilter
     {

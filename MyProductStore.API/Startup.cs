@@ -10,15 +10,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyProductStore.Application.Handlers.Products;
 using MyProductStore.Application.Mappings;
-using MyProductStore.Application.Middleware;
-using MyProductStore.Application.Validators;
 using MyProductStore.Core.Interfaces;
 using MyProductStore.Infrastructure.Data;
 using MyProductStore.Infrastructure.Interfaces;
-using MyProductStore.Infrastructure.JwtToken;
 using MyProductStore.Infrastructure.Middlewares;
 using MyProductStore.Infrastructure.Repositories;
 using MyProductStore.Infrastructure.Services;
+using MyProductStore.Infrastructure.Validators;
 using System;
 using System.IO;
 using System.Reflection;
@@ -73,17 +71,6 @@ namespace MyProductStore.API
                 });
 
                 doc.OperationFilter<AuthResponsesOperationFilter>();
-
-                //doc.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                //    {
-                //        new OpenApiSecurityScheme{
-                //            Reference = new OpenApiReference{
-                //                Type = ReferenceType.SecurityScheme,
-                //                Id = "Bearer"
-                //              }
-                //            }, new String[]{ }
-                //     }
-                //});
             });
 
             services.AddMvc(options =>

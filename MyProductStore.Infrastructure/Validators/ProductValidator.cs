@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MyProductStore.Application.DTOs.Input;
 
-namespace MyProductStore.Application.Validators
+namespace MyProductStore.Infrastructure.Validators
 {
     public class ProductValidator : AbstractValidator<ProductInputDto>
     {

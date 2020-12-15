@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Middleware
+namespace MyProductStore.Infrastructure.Middlewares
 {
     public class JwtMiddleware
     {

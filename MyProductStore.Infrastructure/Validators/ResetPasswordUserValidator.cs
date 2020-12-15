@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MyProductStore.Application.Commands.Users;
 
-namespace MyProductStore.Application.Validators
+namespace MyProductStore.Infrastructure.Validators
 {
     public class ResetPasswordUserValidator : AbstractValidator<ResetPasswordUserCommand>
     {
