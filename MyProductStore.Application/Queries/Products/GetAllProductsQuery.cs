@@ -2,7 +2,7 @@
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.QueryParameter;
 
-namespace MyProductStore.Application.Queries
+namespace MyProductStore.Application.Queries.Products
 {
     public class GetAllProductsQuery : IRequest<PagedListOutputDto<ProductOutputDto>>
     {

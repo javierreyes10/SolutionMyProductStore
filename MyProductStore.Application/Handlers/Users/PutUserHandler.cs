@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Application.Exceptions;
 using MyProductStore.Core.Interfaces;

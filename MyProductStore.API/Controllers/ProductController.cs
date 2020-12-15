@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
-using MyProductStore.Application.Queries;
+using MyProductStore.Application.Queries.Products;
 using MyProductStore.Core.QueryParameter;
 using Newtonsoft.Json;
 using System.Collections.Generic;

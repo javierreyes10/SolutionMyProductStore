@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MyProductStore.Application.DTOs.Output.User;
 
-namespace MyProductStore.Application.Commands.User
+namespace MyProductStore.Application.Commands.Users
 {
     public class AuthenticateUserCommand : IRequest<UserTokenOutputDto>
     {

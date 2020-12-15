@@ -2,7 +2,7 @@
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
 
-namespace MyProductStore.Application.Commands.User
+namespace MyProductStore.Application.Commands.Users
 {
     public class BaseUserCommand : IRequest<UserOutputDto>
     {

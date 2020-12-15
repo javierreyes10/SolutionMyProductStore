@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.DTOs.Output.User;

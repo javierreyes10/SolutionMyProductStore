@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MyProductStore.Application.Commands.User
+namespace MyProductStore.Application.Commands.Users
 {
     public class ForgotPasswordUserCommand : IRequest<string>
     {

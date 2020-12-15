@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Application.Filters;

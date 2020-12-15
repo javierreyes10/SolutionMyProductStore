@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MyProductStore.Application.Commands.User;
+using MyProductStore.Application.Commands.Users;
 
 namespace MyProductStore.Application.Validators
 {

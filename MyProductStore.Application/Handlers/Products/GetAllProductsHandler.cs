@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.DTOs.Output;
-using MyProductStore.Application.Queries;
+using MyProductStore.Application.Queries.Products;
 using MyProductStore.Core.Entities;
 using MyProductStore.Core.Interfaces;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using MyProductStore.Application.DTOs.Input;
 
-namespace MyProductStore.Application.Commands.User
+namespace MyProductStore.Application.Commands.Users
 {
     public class PutUserCommand : BaseUserCommand
     {
