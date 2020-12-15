@@ -137,7 +137,7 @@ namespace MyProductStore.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<UserOutputDto>> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
         {
-            var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto, UserId.Value));
+            var user = await _mediator.Send(new PutUserCommand(id, putUserInputDto, UserId ?? 0));
 
             if (user == null) return NotFound();
 
