@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.API.Filters;
+using MyProductStore.API.Helpers;
 using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries.Products;
 using MyProductStore.Core.QueryParameter;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -37,7 +37,8 @@ namespace MyProductStore.API.Controllers
         {
             var products = await _mediator.Send(new GetAllProductsQuery(parameters));
 
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
+            Response.AddPaginationMetadata(products.Metadata);
+            
             return Ok(products.Items);
         }
 

@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyProductStore.API.Filters;
+using MyProductStore.API.Helpers;
 using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Application.Queries.User;
 using MyProductStore.Core.QueryParameter;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,10 +35,11 @@ namespace MyProductStore.API.Controllers
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<UserOutputDto>>> GetAllUsers([FromQuery] UserQueryParameter parameters)
         {
-            var products = await _mediator.Send(new GetAllUsersQuery(parameters));
+            var users = await _mediator.Send(new GetAllUsersQuery(parameters));
 
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.Metadata));
-            return Ok(products.Items);
+            Response.AddPaginationMetadata(users.Metadata);
+
+            return Ok(users.Items);
         }
 
         /// <summary>
