@@ -29,6 +29,8 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        /// <response code="200">List of all the products with filters and pagination applied. By Default PageNumer = 1 and PageSize = 10</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<ProductOutputDto>>> GetAllProducts([FromQuery] ProductQueryParameter parameters)
         {
@@ -43,6 +45,9 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// <response code="200">Product requested by Id</response>
+        /// <response code="404">Product not found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet("{id}", Name = "GetProductById")]
         public async Task<ActionResult<ProductOutputDto>> GetProductById(int id)
         {
@@ -58,6 +63,8 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="productInputDto"></param>
         /// <returns></returns>
+        /// <response code="201">Product created successfully. For getting the product created, please go to the HTTP Response "location" field</response>        
+        /// <response code="500">Internal Server Error</response>
         [HttpPost("")]
         public async Task<ActionResult> CreateProduct([FromBody] ProductInputDto productInputDto)
         {
@@ -72,6 +79,8 @@ namespace MyProductStore.API.Controllers
         /// <param name="id"></param>
         /// <param name="productInputDto"></param>
         /// <returns></returns>
+        /// <response code="404">Product not found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateProduct(int id, [FromBody] ProductInputDto productInputDto)
         {
@@ -88,6 +97,8 @@ namespace MyProductStore.API.Controllers
         /// <param name="id"></param>
         /// <param name="patchDocument"></param>
         /// <returns></returns>
+        /// <response code="404">Product not found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPatch("{id}")]
         public async Task<ActionResult> PartiallyUpdateProduct(int id,
             [FromBody] JsonPatchDocument<ProductInputDto> patchDocument)
@@ -105,6 +116,9 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// <response code="204">Product deleted succesfully</response>
+        /// <response code="404">Product not found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {

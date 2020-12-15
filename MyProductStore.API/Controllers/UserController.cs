@@ -24,10 +24,12 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// Retrieve a list of all the users registered. A "X-Pagination" Response Header is added for more details about pagination
+        /// Retrieve a list of all the users registered. A "X-Pagination" Response Header is added for more details about pagination. For this action you must be authenticated thru /api/users/authenticate
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        /// <response code="200">List of all the users pagination applied. By Default PageNumer = 1 and PageSize = 10</response>
+        /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<UserOutputDto>>> GetAllUsers([FromQuery] UserQueryParameter parameters)
@@ -39,10 +41,13 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// Retrieve a specific user by Id
+        /// Retrieve a specific user by Id. For this action you must be authenticated thru /api/users/authenticate
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// <response code="200">User requested by Id</response>
+        /// <response code="404">User not found</response>
+        /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpGet("{id}", Name = "GeUserById")]
         public async Task<ActionResult<UserOutputDto>> GetUserById(int id)
@@ -59,6 +64,9 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="userInputDto"></param>
         /// <returns></returns>
+        /// <response code="201">User registered successfully. For getting the user created, please go to the HTTP Response "location" field</response>        
+        /// <response code="400">Bad Request. The User name or email already exists</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserInputDto userInputDto)
         {
@@ -71,6 +79,8 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="authenticateUserCommand"></param>
         /// <returns></returns>
+        /// <response code="400">Bad Request. The Email or password is incorrect</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateUserCommand authenticateUserCommand)
         {
@@ -83,6 +93,9 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="forgotPasswordUserCommand"></param>
         /// <returns></returns>
+        /// <response code="200">Success. Email sent</response>
+        /// <response code="400">Bad Request. Email doesn't exist</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordUserCommand forgotPasswordUserCommand)
         {
@@ -92,10 +105,13 @@ namespace MyProductStore.API.Controllers
 
         /// <summary>
         /// You must provide the token sent by the "forgot-password" endpoint for resetting your password.
-        /// Token available for 15 minutes only
+        /// Reset Token available for 15 minutes only
         /// </summary>
         /// <param name="resetPasswordUserCommand"></param>
         /// <returns></returns>
+        /// <response code="200">Success. Password reset</response>
+        /// <response code="400">Bad Request. Email doesn't exist</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordUserCommand resetPasswordUserCommand)
         {
@@ -109,6 +125,9 @@ namespace MyProductStore.API.Controllers
         /// <param name="id"></param>
         /// <param name="putUserInputDto"></param>
         /// <returns></returns>
+        /// <response code="400">Not Allowed to update a different user</response>
+        /// <response code="404">User not found</response>
+        /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateUser(int id, [FromBody] UserInputDto putUserInputDto)
@@ -125,6 +144,9 @@ namespace MyProductStore.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// <response code="400">Not Allowed to delete a different user</response>
+        /// <response code="404">User not found</response>
+        /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)

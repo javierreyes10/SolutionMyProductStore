@@ -7,12 +7,16 @@ namespace MyProductStore.Infrastructure.Validators
     {
         public AuthenticateUserValidator()
         {
-            RuleFor(u => u.UserName)
+            RuleFor(u => u.Email)
                .NotNull()
                .NotEmpty()
-               .WithMessage("UserName is required");
+               .WithMessage("Email is required");
 
-            RuleFor(p => p.Password)
+            RuleFor(u => u.Email)
+             .EmailAddress()
+             .WithMessage("Email must be a valid email format");
+
+            RuleFor(u => u.Password)
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("User Password is required");

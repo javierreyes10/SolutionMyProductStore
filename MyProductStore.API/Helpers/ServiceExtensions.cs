@@ -20,7 +20,13 @@ namespace MyProductStore.API.Helpers
         {
             services.AddSwaggerGen(doc =>
             {
-                doc.SwaggerDoc("v1", new OpenApiInfo { Title = "My Product Store API Elaniin", Version = "v1" });
+                doc.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "My Product Store API Elaniin",
+                    Version = "v1",
+                    Description = "My Product Store Web Api with Net Core 3.1 and other stuffs :)",
+                    Contact = new OpenApiContact { Name = "Javier Reyes", Url = new Uri("https://www.linkedin.com/in/javier-reyes-06299678/") }
+                });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 doc.IncludeXmlComments(xmlPath);

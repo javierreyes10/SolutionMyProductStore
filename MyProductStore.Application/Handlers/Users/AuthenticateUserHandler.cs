@@ -21,14 +21,14 @@ namespace MyProductStore.Application.Handlers.Users
         }
         public async Task<UserTokenOutputDto> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = await _unitOfWork.Users.SingleOrDefaultAsync(u => u.UserName == request.UserName);
+            var user = await _unitOfWork.Users.SingleOrDefaultAsync(u => u.Email == request.Email);
 
             if (user == null || !BC.Verify(request.Password, user.PasswordHash))
                 throw new ApiBusinessException("Email or password is incorrect");
 
             return new UserTokenOutputDto
             {
-                UserName = request.UserName,
+                Email = request.Email,
                 Token = _jwtTokenBuilder.BuildToken(user)
             };
         }

@@ -18,7 +18,6 @@ namespace MyProductStore.API.Filters
                 var securityRequirement = new OpenApiSecurityRequirement()
                 {
                     {
-                    // Put here you own security scheme, this one is an example
                         new OpenApiSecurityScheme{
                             Reference = new OpenApiReference{
                                 Type = ReferenceType.SecurityScheme,
