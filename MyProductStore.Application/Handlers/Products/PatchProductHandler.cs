@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MyProductStore.Application.Commands;
 using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
@@ -21,8 +20,6 @@ namespace MyProductStore.Application.Handlers.Products
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
-        //TODO: How to validate the constraints here??
 
         public async Task<ProductOutputDto> Handle(PatchProductCommand request, CancellationToken cancellationToken)
         {

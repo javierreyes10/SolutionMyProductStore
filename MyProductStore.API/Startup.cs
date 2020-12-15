@@ -3,22 +3,14 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using MyProductStore.API.Helpers;
 using MyProductStore.Application.Handlers.Products;
-using MyProductStore.Application.Mappings;
-using MyProductStore.Core.Interfaces;
-using MyProductStore.Infrastructure.Data;
-using MyProductStore.Infrastructure.Interfaces;
+using MyProductStore.Infrastructure.Mappings;
 using MyProductStore.Infrastructure.Middlewares;
-using MyProductStore.Infrastructure.Repositories;
-using MyProductStore.Infrastructure.Services;
 using MyProductStore.Infrastructure.Validators;
-using System;
-using System.IO;
 using System.Reflection;
 
 namespace MyProductStore.API
@@ -35,43 +27,22 @@ namespace MyProductStore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                });
 
-            services.AddDbContext<ProductStoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"),
-                x => x.MigrationsAssembly("MyProductStore.Infrastructure")), ServiceLifetime.Transient);
+            services.AddDbConfiguration(Configuration);
 
-            services.BuildServiceProvider().GetService<ProductStoreDbContext>().Database.Migrate();
-
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-
-            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
-            services.AddTransient<IEmailService, EmailService>();
-            services.AddSingleton<IJwtTokenBuilder, JwtTokenBuilder>();
+            services.AddMyProductStoreServices(Configuration);
 
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddMediatR(typeof(GetAllProductsHandler).GetTypeInfo().Assembly);
 
-            services.AddSwaggerGen(doc =>
-            {
-                doc.SwaggerDoc("v1", new OpenApiInfo { Title = "My Product Store API Elaniin", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                doc.IncludeXmlComments(xmlPath);
-
-                doc.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT authorization header using the Bearer scheme."
-                });
-
-                doc.OperationFilter<AuthResponsesOperationFilter>();
-            });
+            services.AddSwaggerConfiguration();
 
             services.AddMvc(options =>
             {
@@ -82,11 +53,7 @@ namespace MyProductStore.API
             });
 
             //HttpPatch
-            services
-                .AddControllersWithViews()
-                .AddNewtonsoftJson();
-
-
+            services.AddControllersWithViews().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

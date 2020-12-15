@@ -5,7 +5,7 @@ using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.DTOs.Output.User;
 using MyProductStore.Core.Entities;
 
-namespace MyProductStore.Application.Mappings
+namespace MyProductStore.Infrastructure.Mappings
 {
     public class MappingProfile : Profile
     {

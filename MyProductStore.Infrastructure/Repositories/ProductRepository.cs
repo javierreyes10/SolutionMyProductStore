@@ -25,7 +25,6 @@ namespace MyProductStore.Infrastructure.Repositories
             return await products.ToPagedListAsync(parameter.PageNumber, parameter.PageSize);
         }
 
-        //TODO: GENERIC METHODS?
         private void SearchByName(ref IQueryable<Product> products, string name)
         {
             if (!products.Any() || string.IsNullOrWhiteSpace(name)) return;

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MyProductStore.API.Filters;
 using MyProductStore.Application.Commands.Users;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output.User;
-using MyProductStore.Application.Filters;
 using MyProductStore.Application.Queries.User;
 using MyProductStore.Core.QueryParameter;
 using Newtonsoft.Json;

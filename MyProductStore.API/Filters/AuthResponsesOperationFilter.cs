@@ -3,7 +3,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyProductStore.API
+namespace MyProductStore.API.Filters
 {
     public class AuthResponsesOperationFilter : IOperationFilter
     {
