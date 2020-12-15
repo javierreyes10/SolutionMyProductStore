@@ -29,6 +29,7 @@ namespace MyProductStore.API.Controllers
         /// <param name="parameters"></param>
         /// <returns></returns>
         /// <response code="200">List of all the users pagination applied. By Default PageNumer = 1 and PageSize = 10</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="500">Internal Server Error</response>
         [Authorize]
         [HttpGet("")]
@@ -46,6 +47,7 @@ namespace MyProductStore.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// <response code="200">User requested by Id</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="404">User not found</response>
         /// <response code="500">Internal Server Error</response>
         [Authorize]
@@ -60,11 +62,12 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// Register a new user. A JWT token will be provided
+        /// Register a new user. A JWT token will be provided and will expire after one hour.
         /// </summary>
         /// <param name="userInputDto"></param>
         /// <returns></returns>
         /// <response code="201">User registered successfully. For getting the user created, please go to the HTTP Response "location" field</response>        
+        /// <response code="401">Unauthorized</response>
         /// <response code="400">Bad Request. The User name or email already exists</response>
         /// <response code="500">Internal Server Error</response>
         [HttpPost("register")]
@@ -75,7 +78,7 @@ namespace MyProductStore.API.Controllers
         }
 
         /// <summary>
-        /// User authentication. A JWT token will be provided 
+        /// User authentication. A JWT token will be provided and will expire after one hour.
         /// </summary>
         /// <param name="authenticateUserCommand"></param>
         /// <returns></returns>
@@ -126,6 +129,7 @@ namespace MyProductStore.API.Controllers
         /// <param name="putUserInputDto"></param>
         /// <returns></returns>
         /// <response code="400">Not Allowed to update a different user</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="404">User not found</response>
         /// <response code="500">Internal Server Error</response>
         [Authorize]
@@ -145,6 +149,7 @@ namespace MyProductStore.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// <response code="400">Not Allowed to delete a different user</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="404">User not found</response>
         /// <response code="500">Internal Server Error</response>
         [Authorize]
