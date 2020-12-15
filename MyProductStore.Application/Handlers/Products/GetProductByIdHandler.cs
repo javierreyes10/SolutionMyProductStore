@@ -7,7 +7,7 @@ using MyProductStore.Core.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Handlers
+namespace MyProductStore.Application.Handlers.Products
 {
     public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, ProductOutputDto>
     {

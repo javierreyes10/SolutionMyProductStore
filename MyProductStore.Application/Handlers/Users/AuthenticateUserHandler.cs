@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BC = BCrypt.Net.BCrypt;
 
-namespace MyProductStore.Application.Handlers.User
+namespace MyProductStore.Application.Handlers.Users
 {
     public class AuthenticateUserHandler : IRequestHandler<AuthenticateUserCommand, UserTokenOutputDto>
     {

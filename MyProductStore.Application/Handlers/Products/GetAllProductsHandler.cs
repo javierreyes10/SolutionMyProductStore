@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using X.PagedList;
 
-namespace MyProductStore.Application.Handlers
+namespace MyProductStore.Application.Handlers.Products
 {
     public class GetAllProductsHandler : IRequestHandler<GetAllProductsQuery, PagedListOutputDto<ProductOutputDto>>
     {

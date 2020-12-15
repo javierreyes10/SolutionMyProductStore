@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using MyProductStore.Application.Commands;
+using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Application.Queries;

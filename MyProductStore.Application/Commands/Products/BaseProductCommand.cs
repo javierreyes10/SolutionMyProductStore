@@ -2,7 +2,7 @@
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 
-namespace MyProductStore.Application.Commands
+namespace MyProductStore.Application.Commands.Products
 {
     public class BaseProductCommand : IRequest<ProductOutputDto>
     {

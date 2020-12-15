@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.Commands;
+using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Input;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Entities;
@@ -9,7 +10,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Handlers
+namespace MyProductStore.Application.Handlers.Products
 {
     public class PostProductHandler : IRequestHandler<CreateProductCommand, ProductOutputDto>
     {

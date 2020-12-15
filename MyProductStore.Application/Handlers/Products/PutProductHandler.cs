@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyProductStore.Application.Commands;
+using MyProductStore.Application.Commands.Products;
 using MyProductStore.Application.DTOs.Output;
 using MyProductStore.Core.Entities;
 using MyProductStore.Core.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Handlers
+namespace MyProductStore.Application.Handlers.Products
 {
     public class PutProductHandler : IRequestHandler<PutProductCommand, ProductOutputDto>
     {

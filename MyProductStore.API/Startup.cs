@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MyProductStore.Application.Handlers;
+using MyProductStore.Application.Handlers.Products;
 using MyProductStore.Application.JwtToken;
 using MyProductStore.Application.Mappings;
 using MyProductStore.Application.Middleware;

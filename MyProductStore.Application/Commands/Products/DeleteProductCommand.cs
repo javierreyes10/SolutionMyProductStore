@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MyProductStore.Application.DTOs.Output;
 
-namespace MyProductStore.Application.Commands
+namespace MyProductStore.Application.Commands.Products
 {
     public class DeleteProductCommand : IRequest<ProductOutputDto>
     {

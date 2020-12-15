@@ -6,7 +6,7 @@ using MyProductStore.Core.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyProductStore.Application.Handlers.User
+namespace MyProductStore.Application.Handlers.Users
 {
     public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, UserOutputDto>
     {
