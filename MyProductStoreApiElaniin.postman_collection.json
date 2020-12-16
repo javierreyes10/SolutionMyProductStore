@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "286bf036-1263-4f8c-bad6-2b66fc953e2d",
+		"name": "MyProductStoreApiElaniin",
+		"description": "A collection with different example for using the My Product Store Api Elaniin. For more details go to: https://myproductstoreapi.azurewebsites.net/index.html",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "RegisterUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"phone\": \"74563211\",\r\n  \"userName\": \"John.Doe\",\r\n  \"birthdDate\": \"1980-12-15\",\r\n  \"email\": \"validEmailHere@test.com\",\r\n  \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/register",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AuthenticateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"validEmailHere@test.com\",\r\n  \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/authenticate",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users?PageSize=2&PageNumber=1",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "PageSize",
+									"value": "2",
+									"description": "This Field is option. By default 10 item per page. Max value = 50"
+								},
+								{
+									"key": "PageNumber",
+									"value": "1",
+									"description": "The page number you want to retreive. Optional and by default 1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/2",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ForgotPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"validEmailHere@test.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/forgot-password",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResetPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"D08AB2E4-07EA-4E13-B591-FC57F8F53479\",\r\n  \"password\": \"newPassword\",\r\n  \"confirmPassword\": \"newPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/reset-password",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUiLCJqdGkiOiI0ZTE0MDAwNC1lYjI3LTQwN2QtYTQ4OC1iODNiNzRjZjE2YmYiLCJuYmYiOjE2MDgwNjMwNTgsImV4cCI6MTYwODA2NjY1OCwiaWF0IjoxNjA4MDYzMDU4fQ.eZYAYY5uXha0U1bpiiYZvSRWDOufDgX3d_gGbLhxeN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Doe II\",\r\n  \"phone\": \"74563211\",\r\n  \"userName\": \"John.Doe\",\r\n  \"birthdDate\": \"1980-12-15\",\r\n  \"email\": \"validEmailHere@test.com\",\r\n  \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/5",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjUiLCJqdGkiOiI0ZTE0MDAwNC1lYjI3LTQwN2QtYTQ4OC1iODNiNzRjZjE2YmYiLCJuYmYiOjE2MDgwNjMwNTgsImV4cCI6MTYwODA2NjY1OCwiaWF0IjoxNjA4MDYzMDU4fQ.eZYAYY5uXha0U1bpiiYZvSRWDOufDgX3d_gGbLhxeN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/users/5",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products?Name=gucci&sku=med&PageSize=3&PageNumber=1",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "gucci",
+									"description": "Filter by Product Name. This field is optional"
+								},
+								{
+									"key": "sku",
+									"value": "med",
+									"description": "Filter by Product SKU. This field is optional"
+								},
+								{
+									"key": "PageSize",
+									"value": "3",
+									"description": "This Field is option. By default 10 item per page. Max value = 50"
+								},
+								{
+									"key": "PageNumber",
+									"value": "1",
+									"description": "The page number you want to retreive. Optional and by default 1\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products/5",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"sku\": \"SKU-MED-GUC\",\r\n  \"name\": \"New Winter Jacket Collection Gucci\",\r\n  \"quantity\": 15,\r\n  \"price\": 19.99,\r\n  \"description\": \"New 2020 Collection Covid-19 Edition\",\r\n  \"image\": \"https://via.placeholder.com/150/0000FF/808080?Text=Digital.comhttps://placeholder.com/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sku\": \"SKU-MED-GUC\",\r\n    \"name\": \"New Winter Jacket Collection Gucci - New edition updated\",\r\n    \"quantity\": 15,\r\n    \"price\": 19.99,\r\n    \"description\": \"New 2020 Collection Covid-19 Edition updated\",\r\n    \"image\": \"https://via.placeholder.com/150/0000FF/808080?Text=Digital.comhttps://placeholder.com/\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products/21",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PartialUpdateProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"value\": \"New Description updated\",\r\n        \"path\": \"/description\",\r\n        \"op\": \"replace\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products/21",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products",
+								"21"
+							]
+						},
+						"description": "Through this endpoint you can update and specific field of product with no need to send the entire product object"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjQiLCJqdGkiOiI1YTFmMGM1My05Njc0LTQyNmItOTFlYi01Yjc1YWI4MGJiMGUiLCJuYmYiOjE2MDgwNjAwMjQsImV4cCI6MTYwODA2MzYyNCwiaWF0IjoxNjA4MDYwMDI0fQ.biXTTWou464mpShupTMLEbJYWUNCdT1tmUaOWEZqrOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://myproductstoreapi.azurewebsites.net/api/products/21",
+							"protocol": "https",
+							"host": [
+								"myproductstoreapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"products",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
